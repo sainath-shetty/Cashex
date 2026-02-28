@@ -1,0 +1,13 @@
+# Environment variables — contain secrets, never commit these
+.env
+
+# Kubernetes secrets helper (contains credentials)
+k8s/create-secrets.sh
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+*.swp

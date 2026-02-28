@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-deployment
+  namespace: cashex
+  labels:
+    app: cashex-backend
+spec:
+  replicas: 2 # Run 2 backend pods simultaneously
+  selector:
+    matchLabels:
+      app: cashex-backend
+  template:
+    metadata:
+      labels:
+        app: cashex-backend
+    spec:
+      containers:
+        - name: backend
+          image: cashex-backend:latest
+          imagePullPolicy: Never # Use locally built image
+          ports:
+            - containerPort: 9000
+          env:
+            - name: JWT_SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: cashex-secrets
+                  key: JWT_SECRET_KEY
+            - name: MONGO_URI
+              valueFrom:
+                secretKeyRef:
+                  name: cashex-secrets
+                  key: MONGO_URI

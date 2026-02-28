@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-deployment
+  namespace: cashex
+  labels:
+    app: cashex-frontend
+spec:
+  replicas: 2 # Run 2 frontend pods simultaneously
+  selector:
+    matchLabels:
+      app: cashex-frontend
+  template:
+    metadata:
+      labels:
+        app: cashex-frontend
+    spec:
+      containers:
+        - name: frontend
+          image: cashex-frontend:latest
+          imagePullPolicy: Never # Use locally built image
+          ports:
+            - containerPort: 80
+          volumeMounts:
+            - name: nginx-config-volume
+              mountPath: /etc/nginx/conf.d/default.conf
+              subPath: default.conf # Mount only this file from the ConfigMap
+      volumes:
+        - name: nginx-config-volume
+          configMap:
+            name: nginx-config # Points to frontend-nginx-configmap.yaml

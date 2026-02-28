@@ -1,0 +1,23 @@
+version: "3.8"
+
+services:
+  # ── Backend (Node.js / Express) ─────────────────────────────────────
+  backend:
+    build: ./backend
+    container_name: cashex-backend
+    ports:
+      - "9000:9000" # expose for direct access / health checks
+    environment:
+      - JWT_SECRET_KEY=${JWT_SECRET_KEY}
+      - MONGO_URI=${MONGO_URI}
+    restart: unless-stopped
+
+  # ── Frontend (React + Nginx) ─────────────────────────────────────────
+  frontend:
+    build: ./frontend
+    container_name: cashex-frontend
+    ports:
+      - "3000:80" # app available at http://localhost:3000
+    depends_on:
+      - backend
+    restart: unless-stopped
