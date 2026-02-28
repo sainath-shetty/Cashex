@@ -16,9 +16,8 @@ Cashex is a full-stack money transfer web application inspired by PayTM. Users c
 ![Dashboard](Assets/dashboard.png)
 
 ### Money Transfer Demo
-<video src="Assets/money%20sending%20video.mp4" controls width="100%">
-  <a href="Assets/money sending video.mp4">Watch the money transfer demo</a>
-</video>
+
+https://github.com/sainath-shetty/Cashex/blob/main/Assets/money%20sending%20video.mp4
 
 ---
 
