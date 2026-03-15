@@ -52,7 +52,7 @@ export function Appbar({ firstName}) {
   return (
     <div className='flex justify-between shadow h-14'>
       <div className='ml-1 font-bold text-orange-500 text-3xl flex'>
-        PayTm 
+        Cashex
         <GiTakeMyMoney className='text-5xl ml-2 mb-2 text-amber-300'/>
       </div>
       
